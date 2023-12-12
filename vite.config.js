@@ -1,21 +1,22 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
-
-import { defineConfig } from 'vite';
-import laravel from 'laravel-vite-plugin';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
     plugins: [
-        laravel(['resources/js/app.jsx']),
-        react(),
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js'],
+            input: 'resources/js/app.jsx',
             refresh: true,
         }),
-    ],server: {
-        hmr: {
-            host: 'localhost',
-        },
+        react(),
+    ],
+    watch: {
+        usePolling: true,
+        origin: 'http://localhost'
     },
+    server: {
+        hmr: {
+            host: 'localhost'
+        }
+    }
 });
